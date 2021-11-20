@@ -119,14 +119,15 @@ if len(faces) != 0:
         mouthangle1=score(abs(azimuthAngle(landmarks[57,0],  landmarks[57,1],  landmarks[42,0],  landmarks[42,1])))
         brownangle1 = score(abs(azimuthAngle(landmarks[17, 0], landmarks[17, 1], landmarks[19, 0], landmarks[19, 1])))
         s=0.7*mouthangle1*200+0.3*brownangle1*200
-        sql = "insert into score (id,score) VALUES (" + "null,'" + s +"' )"
+        sql = "insert into smile (id,score) VALUES (" + "null,'" +str(s) +"' )"
         print(sql)
         cursor.execute(sql)
         conn.commit()
     cv2.putText(im_rd, "Faces:"  + str(len(faces)), (20, 50), font, 1, (255, 255, 255), 1, cv2.LINE_AA)
+    print("Faces:1;score:"+s)
 else:
-    cv2.putText(im_rd, "No face detected", (20, 50), font, 1, (0, 0, 0), 1, cv2.LINE_AA)
-cv2.imwrite(time.strftime("%Y-%m-%d-%H-%M-%S", time.localtime()) + ".jpg",im_rd, [int( cv2.IMWRITE_JPEG_QUALITY), 95])
+    print("No face detected")
+# cv2.imwrite(time.strftime("%Y-%m-%d-%H-%M-%S", time.localtime()) + ".jpg",im_rd, [int( cv2.IMWRITE_JPEG_QUALITY), 95])
 cv2.destroyAllWindows()
 cursor.close()
 conn.close()
