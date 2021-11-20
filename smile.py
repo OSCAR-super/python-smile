@@ -124,7 +124,7 @@ if len(faces) != 0:
         cursor.execute(sql)
         conn.commit()
     cv2.putText(im_rd, "Faces:"  + str(len(faces)), (20, 50), font, 1, (255, 255, 255), 1, cv2.LINE_AA)
-    print("Faces:1;score:"+s)
+    print("Faces:1;score:"+str(s))
 else:
     print("No face detected")
 # cv2.imwrite(time.strftime("%Y-%m-%d-%H-%M-%S", time.localtime()) + ".jpg",im_rd, [int( cv2.IMWRITE_JPEG_QUALITY), 95])
